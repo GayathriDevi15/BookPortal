@@ -1,22 +1,31 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
+@IdClass(SalesId.class)
 @Table(name="sales")
 public class Sales {
 	@Id
 	@ManyToOne(cascade=CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
     @JoinColumn(name = "stor_id", referencedColumnName = "stor_id")
 	private Stores store;
 	@Id
 	@ManyToOne(cascade=CascadeType.ALL)
+	//@OnDelete(action=OnDeleteAction.CASCADE)
     @JoinColumn(name = "title_id", referencedColumnName = "title_id")
     private Titles title;
 	
@@ -25,7 +34,7 @@ public class Sales {
 	private String ordNum;
     
     @Column(name="ord_date",nullable=false,columnDefinition="TIMESTAMP")
-	private LocalDate ordDate;
+	private LocalDateTime ordDate;
     
 	@Column(nullable=false)
 	private short qty;
@@ -36,7 +45,7 @@ public class Sales {
 		
 	}
 
-	public Sales(Stores store, Titles title, String ordNum, LocalDate ordDate, short qty, String payTerms) {
+	public Sales(Stores store, Titles title, String ordNum, LocalDateTime ordDate, short qty, String payTerms) {
 		super();
 		this.store = store;
 		this.title = title;
@@ -70,11 +79,11 @@ public class Sales {
 		this.ordNum = ordNum;
 	}
 
-	public LocalDate getOrdDate() {
+	public LocalDateTime getOrdDate() {
 		return ordDate;
 	}
 
-	public void setOrdDate(LocalDate ordDate) {
+	public void setOrdDate(LocalDateTime ordDate) {
 		this.ordDate = ordDate;
 	}
 
