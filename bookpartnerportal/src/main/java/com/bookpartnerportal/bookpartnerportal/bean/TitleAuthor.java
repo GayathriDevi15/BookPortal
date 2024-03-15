@@ -1,5 +1,8 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
@@ -18,10 +21,12 @@ public class TitleAuthor {
    
     @Id
     @ManyToOne(cascade=CascadeType.ALL)
+    //@OnDelete(action=OnDeleteAction.CASCADE)
     @JoinColumn(name = "au_id", referencedColumnName = "au_id")
     private Author author;
     @Id
     @ManyToOne(cascade=CascadeType.ALL)
+   // @OnDelete(action=OnDeleteAction.CASCADE)
     @JoinColumn(name = "title_id", referencedColumnName = "title_id")
     private Titles title;
     @Column(name="au_ord")

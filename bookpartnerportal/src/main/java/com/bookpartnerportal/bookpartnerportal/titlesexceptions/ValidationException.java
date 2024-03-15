@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.exception;
+package com.bookpartnerportal.bookpartnerportal.titlesexceptions;
 
 public class ValidationException extends RuntimeException{
 	public ValidationException(String message){

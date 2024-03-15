@@ -1,11 +1,14 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="stores")
+
 public class Stores {
 	@Id
 	@Column(name="stor_id",columnDefinition="char(4)")

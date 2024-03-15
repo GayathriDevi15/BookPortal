@@ -21,11 +21,10 @@ public class SalesServiceImplementation implements SalesService {
 		List<Sales> salesList=salesRepository.findAll();
 		return salesList;
 	}
+    
     @Override
 	public Sales getSalesById(String ordNum) {
-		// TODO Auto-generated method stub
 		Sales sales=salesRepository.findByOrdNum(ordNum);
 		return sales;
 	}
-
 }
