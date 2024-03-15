@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.exception;
+package com.bookpartnerportal.bookpartnerportal.employeeexception;
 
 public class EmployeeNotFoundException extends RuntimeException{
 	public EmployeeNotFoundException(String message){

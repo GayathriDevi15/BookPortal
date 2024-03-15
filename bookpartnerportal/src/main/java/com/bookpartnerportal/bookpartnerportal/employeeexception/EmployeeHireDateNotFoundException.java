@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.exception;
+package com.bookpartnerportal.bookpartnerportal.employeeexception;
 
 public class EmployeeHireDateNotFoundException extends RuntimeException{
 	public EmployeeHireDateNotFoundException(String message){

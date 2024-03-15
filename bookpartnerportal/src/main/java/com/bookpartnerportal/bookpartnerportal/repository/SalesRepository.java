@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import com.bookpartnerportal.bookpartnerportal.bean.Sales;
@@ -15,8 +16,11 @@ public interface SalesRepository extends JpaRepository<Sales,String> {
 	List<Sales> findByOrdDate(LocalDateTime ordDate);
 	@Query("SELECT s FROM Sales s WHERE s.title.titleId = :titleId")
     List<Sales> findByTitleId(String titleId);
-	Sales findByStoreAndTitle(Stores store, Titles title);
-	
+	List<Sales> findByTitle(Titles title);
+	List<Stores> findByStore(Sales sale);
+    @Modifying
+    @Query("Delete from Sales s where s.title.titleId= :titleId")
+	void deleteByTitleId(String titleId);
  
  
 }

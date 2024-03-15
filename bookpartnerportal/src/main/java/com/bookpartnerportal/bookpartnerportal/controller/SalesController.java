@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bookpartnerportal.bookpartnerportal.bean.Employee;
 import com.bookpartnerportal.bookpartnerportal.bean.Sales;
 import com.bookpartnerportal.bookpartnerportal.bean.Titles;
-import com.bookpartnerportal.bookpartnerportal.exception.SalesNotFoundByOrderDateException;
-import com.bookpartnerportal.bookpartnerportal.exception.SalesNotFoundByTitleIDException;
-import com.bookpartnerportal.bookpartnerportal.exception.SalesValidationException;
-import com.bookpartnerportal.bookpartnerportal.exception.SuccessResponse;
+import com.bookpartnerportal.bookpartnerportal.employeeexception.SuccessResponse;
+import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesDetailsNotFoundException;
+import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesNotFoundByOrderDateException;
+import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesNotFoundByTitleIDException;
+import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesValidationException;
+import com.bookpartnerportal.bookpartnerportal.salesexceptions.SaleswithOrdnumNotFoundException;
 import com.bookpartnerportal.bookpartnerportal.serviceimplementation.SalesServiceImplementation;
  
 @RestController
@@ -32,14 +34,18 @@ public class SalesController {
 		this.salesService = salesService;
 	}
  
-	  @GetMapping
+	@GetMapping
 	  public ResponseEntity<List<Sales>> getAllsales(){
 		 List<Sales> salesList=salesService.getAllSales();
+		 if(salesList.isEmpty())
+			 throw new SalesDetailsNotFoundException("Sales details not found");
 		  return new ResponseEntity<>(salesList,HttpStatus.OK);
 	  }
 	  @GetMapping("/{id}")
 	  public ResponseEntity<Sales> getSalesById(@PathVariable("id") String ordNum){
 		  Sales sales=salesService.getSalesById(ordNum);
+		  if(sales==null)
+			  throw new SaleswithOrdnumNotFoundException("Sales details with ordnum not found");
 		  return new ResponseEntity<>(sales,HttpStatus.OK);
 	  }
 	  

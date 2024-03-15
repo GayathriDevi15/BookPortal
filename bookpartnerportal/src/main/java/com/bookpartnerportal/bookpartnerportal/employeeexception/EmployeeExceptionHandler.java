@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.exception;
+package com.bookpartnerportal.bookpartnerportal.employeeexception;
 
 import java.time.LocalDate;
 
@@ -7,6 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesNotFoundByOrderDateException;
+import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesNotFoundByTitleIDException;
+import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesValidationException;
 
 @ControllerAdvice
 public class EmployeeExceptionHandler{

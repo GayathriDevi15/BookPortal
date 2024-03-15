@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.exception;
+package com.bookpartnerportal.bookpartnerportal.employeeexception;
 
 public class EmployeeValidationFailedException extends RuntimeException{
 	public EmployeeValidationFailedException(String message){
