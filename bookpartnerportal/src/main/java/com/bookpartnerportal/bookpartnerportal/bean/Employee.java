@@ -12,8 +12,8 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="employee")
 public class Employee {
-	@Id
-	 @Column(name="emp_id",nullable=false,unique=true,columnDefinition="varchar(10)")
+		@Id
+		@Column(name="emp_id",nullable=false,unique=true,columnDefinition="varchar(10)")
 		private String empId;
 	    @Column(nullable=false,columnDefinition="varchar(20)")
 		private String fname;
