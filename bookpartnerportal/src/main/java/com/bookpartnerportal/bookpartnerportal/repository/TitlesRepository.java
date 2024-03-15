@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -25,12 +26,15 @@ public interface TitlesRepository extends JpaRepository<Titles,String> {
 	List<Titles> findByPub(Publisher pub);
 
 	Titles findByTitle(String title);
-
-	Titles deleteByTitleId(String titleId);
-    
+	
+	Titles findByTitle(Titles title);
     
 	@Query(value="SELECT t FROM Titles t ORDER BY ytdSales DESC LIMIT 5")
 	List<Titles> findTopFiveTitles();
+    
+	@Modifying
+	@Query("DELETE FROM Titles t WHERE t.titleId= :titleId")
+	void deleteByTitleId(String titleId);
 	
      
 }

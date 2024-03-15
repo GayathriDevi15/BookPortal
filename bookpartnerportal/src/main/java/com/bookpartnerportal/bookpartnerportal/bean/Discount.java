@@ -1,4 +1,7 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +16,7 @@ import jakarta.persistence.Table;
 public class Discount {
  
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
  
@@ -21,6 +24,7 @@ public class Discount {
     private String discountType;
  
     @ManyToOne(cascade=CascadeType.ALL)
+    @OnDelete(action=OnDeleteAction.CASCADE)
     @JoinColumn(name = "stor_id", referencedColumnName = "stor_id")
     private Stores store;
  

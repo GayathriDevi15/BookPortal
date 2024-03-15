@@ -2,6 +2,9 @@ package com.bookpartnerportal.bookpartnerportal.bean;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,10 +20,12 @@ import jakarta.persistence.Table;
 public class Sales {
 	@Id
 	@ManyToOne(cascade=CascadeType.ALL)
+	@OnDelete(action=OnDeleteAction.CASCADE)
     @JoinColumn(name = "stor_id", referencedColumnName = "stor_id")
 	private Stores store;
 	@Id
 	@ManyToOne(cascade=CascadeType.ALL)
+	//@OnDelete(action=OnDeleteAction.CASCADE)
     @JoinColumn(name = "title_id", referencedColumnName = "title_id")
     private Titles title;
 	

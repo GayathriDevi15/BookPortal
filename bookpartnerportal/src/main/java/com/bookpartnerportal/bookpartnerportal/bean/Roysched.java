@@ -1,4 +1,7 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,6 +24,7 @@ public class Roysched {
    private int hiRange;
    private int royalty;
    @ManyToOne(cascade=CascadeType.ALL)
+   //@OnDelete(action=OnDeleteAction.CASCADE)
    @JoinColumn(name="title_id",referencedColumnName="title_id")
    private Titles titles;
    
