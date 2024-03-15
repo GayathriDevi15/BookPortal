@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.exception;
+package com.bookpartnerportal.bookpartnerportal.Publisherexception;
 
 import org.springframework.http.HttpStatus;
 
