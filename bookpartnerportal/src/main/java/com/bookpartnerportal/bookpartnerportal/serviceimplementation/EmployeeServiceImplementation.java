@@ -39,6 +39,11 @@ public class EmployeeServiceImplementation implements EmployeeService{
 		List<Employee> emp=emprepository.findAllByPublisherPubIdAndFname(publisherId, fname);
 		return emp;
 	}
+	//delete by empId
+		@Override
+		public void deleteEmployeebyEmpId(String empId) {
+			emprepository.deleteById(empId);
+		}
 	
 //
 //	@Override

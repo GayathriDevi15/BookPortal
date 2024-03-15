@@ -11,10 +11,10 @@ public interface PublisherRepository extends JpaRepository<Publisher,String>{
 	List<Publisher> findAll();
 	List<Publisher> findByCountry(String countryname);
 	List<Publisher> findByState(String statename);
+	List<Publisher> findByCity(String cityname);
 	List<Publisher> findByPubName(String publisherName);
 	Publisher findBypubId(String pubid);
 	
 
 	
-
 }

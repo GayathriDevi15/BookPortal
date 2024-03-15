@@ -1,4 +1,5 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -26,7 +27,7 @@ import jakarta.persistence.Table;
       @Column(columnDefinition="varchar(200)")
       private String notes;
       @Column(name="pubdate",nullable=false)
-      private LocalDateTime pubDate;
+      private LocalDate pubDate;
       @ManyToOne(cascade=CascadeType.ALL)
       @JoinColumn(name="pub_id",referencedColumnName="pub_id")
       private Publisher pub;
@@ -35,7 +36,7 @@ import jakarta.persistence.Table;
 	  }
 
 	public Titles(String titleId, String title, String type, double price, double advance, int royalty, int ytdSales,
-			String notes, LocalDateTime pubDate, Publisher pub) {
+			String notes, LocalDate pubDate, Publisher pub) {
 		super();
 		this.titleId = titleId;
 		this.title = title;
@@ -113,11 +114,11 @@ import jakarta.persistence.Table;
 		this.notes = notes;
 	}
 
-	public LocalDateTime getPubDate() {
+	public LocalDate getPubDate() {
 		return pubDate;
 	}
 
-	public void setPubDate(LocalDateTime pubDate) {
+	public void setPubDate(LocalDate pubDate) {
 		this.pubDate = pubDate;
 	}
 
