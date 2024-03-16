@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.Publisherexception;
+package com.bookpartnerportal.bookpartnerportal.publisherexception;
 
 public class PublisherIdNotFoundException extends RuntimeException {
   public PublisherIdNotFoundException(String message) {

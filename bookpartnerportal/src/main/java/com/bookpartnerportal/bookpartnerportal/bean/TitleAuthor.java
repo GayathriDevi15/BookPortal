@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.bean;
+  package com.bookpartnerportal.bookpartnerportal.bean;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
