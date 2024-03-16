@@ -157,48 +157,6 @@ public class PublisherController {
 	   SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"New Publisher added successfully");
 	   return new ResponseEntity<>(successResponse,HttpStatus.CREATED);
    }
-   
-   
-=======
-		return new ResponseEntity<>(e,HttpStatus.OK);
-	}
-	
-	@GetMapping("/api/publishers/country/{countryname}")
-   public ResponseEntity<List<Publisher>> getbycountry(@PathVariable("countryname") String countryname){
-		List<Publisher> publisher = publisherImp.getbyCountry(countryname);
-       return new ResponseEntity<>(publisher,HttpStatus.OK);
-   }
-
-	@GetMapping("/api/publishers/state/{statename}")
-   public ResponseEntity<List<Publisher>> getbystate(@PathVariable("statename") String statename){
-		List<Publisher> publisher = publisherImp.getbyState(statename);
-       return new ResponseEntity<>(publisher,HttpStatus.OK);
-   }
-	
-	@GetMapping("/api/publishers/pubname/{publishername}")
-   public ResponseEntity<List<Publisher>> getbypubname(@PathVariable("publishername") String publishername){
-		List<Publisher> publisher = publisherImp.getbyName(publishername);
-       return new ResponseEntity<>(publisher,HttpStatus.OK);
-   }
-
-  @DeleteMapping("/api/publishers/{pub_id}")
-  public ResponseEntity<Void> deletePublisher(@PathVariable("pub_id") String id) {
-	 publisherImp.deletePublisherbyId(id);
-	  return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-	}
-  
-  @PutMapping("/api/publishers/{pub_id}")
-  public ResponseEntity<Publisher> updatepublisher(@PathVariable("pub_id") String pub_id, @RequestBody Publisher publisher){
-	   Publisher pub=publisherImp.updatepublisher(pub_id, publisher);
-	   return new ResponseEntity<>(publisher,HttpStatus.OK);
-  }
-  
-  @PostMapping("/api/publishers")
-  public ResponseEntity<Publisher> addnewpublisher(@RequestBody Publisher publisher){
-	   Publisher newpub=publisherImp.addpublisher(publisher);
-	   return new ResponseEntity<>(newpub,HttpStatus.CREATED);
-  }
-  
-  
+     
 
 }
