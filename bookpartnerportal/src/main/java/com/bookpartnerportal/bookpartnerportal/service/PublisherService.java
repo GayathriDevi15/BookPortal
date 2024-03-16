@@ -11,6 +11,7 @@ public interface PublisherService {
 	List<Employee> getbyempfnameubid(String pubid, String fname);
 	List<Publisher> getbyCountry(String countryname);
 	List<Publisher> getbyState(String statename);
+	List<Publisher> getbyCity(String cityname);
 	List<Publisher> getbyName(String publisherName);
 	void deletePublisherbyId(String pubId);
 	Publisher updatepublisher(String pubid,Publisher publisher);

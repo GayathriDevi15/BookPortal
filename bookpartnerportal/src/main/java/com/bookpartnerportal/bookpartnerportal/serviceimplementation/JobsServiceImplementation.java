@@ -19,11 +19,12 @@ public class JobsServiceImplementation implements JobsService{
 	}
 	
 	@Override
-	public Optional<Jobs> findbyId(int id) {
+	public Jobs findbyId(int id) {
 
-		return jobrepo.findById(id);
+		return jobrepo.findByJobId(id);
 	}
 
+	
 	public JobsServiceImplementation(JobsRepository jobrepo) {
 		this.jobrepo = jobrepo;
 	}

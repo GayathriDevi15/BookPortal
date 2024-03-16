@@ -1,6 +1,5 @@
 package com.bookpartnerportal.bookpartnerportal.controller;  
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,7 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bookpartnerportal.bookpartnerportal.bean.Jobs;
 import com.bookpartnerportal.bookpartnerportal.bean.Publisher;
+
+import com.bookpartnerportal.bookpartnerportal.publisherexception.JobsWithJobIdNotFoundException;
+import com.bookpartnerportal.bookpartnerportal.publisherexception.PublishersNotFoundException;
+import com.bookpartnerportal.bookpartnerportal.publisherexception.ValidationFailedException;
 import com.bookpartnerportal.bookpartnerportal.serviceimplementation.JobsServiceImplementation;
+import com.bookpartnerportal.bookpartnerportal.success.SuccessResponse;
+
 
 @RestController
 public class JobsController {
@@ -27,15 +32,25 @@ public class JobsController {
 	}
 	
 	@GetMapping("/api/jobs/{id}")
-	public ResponseEntity<Optional<Jobs>> getjobsbyid(@PathVariable("id") int id) {
-		Optional<Jobs> j=jobimp.findbyId(id);
+
+	public ResponseEntity<Jobs> getjobsbyid(@PathVariable("id") int id) {
+		Jobs j=jobimp.findbyId(id);
+		if(j==null) {
+			throw new JobsWithJobIdNotFoundException("Jobs with this job id not found");
+		}
 		return new ResponseEntity<>(j,HttpStatus.FOUND);
 	}
 	
 	@PostMapping("/api/jobs")
-	   public ResponseEntity<Jobs> addnewjobs(@RequestBody Jobs job){
+
+	   public ResponseEntity<SuccessResponse> addnewjobs(@RequestBody Jobs job){
 		   Jobs newjob=jobimp.addJobs(job);
-		   return new ResponseEntity<>(newjob,HttpStatus.CREATED);
+		   if(newjob.getJobDesc().isEmpty()) {
+				throw new ValidationFailedException("Validation failed");
+			}
+		SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"New Job added successfully");
+		   return new ResponseEntity<>(successResponse,HttpStatus.CREATED);
+
 	   }
 	
 
