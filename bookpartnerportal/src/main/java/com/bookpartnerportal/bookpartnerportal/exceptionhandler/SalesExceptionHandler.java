@@ -31,5 +31,13 @@ public class SalesExceptionHandler {
 			return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
 			
 	   }
+	@ExceptionHandler
+	  public ResponseEntity<ErrorResponse> handleException(Exception exe){
+			ErrorResponse err=new ErrorResponse();
+			err.setTimeStamp(LocalDate.now());
+			err.setMessage(exe.getMessage());
+			return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
+			
+		}
 	
 }
