@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bookpartnerportal.bookpartnerportal.bean.Employee;
 import com.bookpartnerportal.bookpartnerportal.bean.Publisher;
@@ -25,6 +26,7 @@ public class PublisherServiceImplementation implements PublisherService{
 		this.employeerepository = employeerepository;
 	}
 	
+
 	
 	@Override
 	public List<Publisher> getAllPublishers() {
@@ -42,19 +44,23 @@ public class PublisherServiceImplementation implements PublisherService{
 	}
 
 	@Override
+	public List<Publisher> getbyCity(String cityname) {
+		// TODO Auto-generated method stub
+		return publisherrepository.findByCity(cityname);
+	}
+	@Override
 	public List<Publisher> getbyName(String publisherName) {
 		return publisherrepository.findByPubName(publisherName);
 	}
 
 	@Override
+	@Transactional
 	public void deletePublisherbyId(String pubId) {
-////		if(publisherrepository.existsById(pubId)) {
-////			
-			publisherrepository.deleteById(pubId);
-////		}else{
-//			
-//			
-//			
+		Publisher pub=publisherrepository.findByPubId(pubId);
+		
+		employeerepository.deleteByPublisher(pub);
+		publisherrepository.deleteById(pubId);
+		
 	}
 
 	@Override
@@ -68,12 +74,17 @@ public class PublisherServiceImplementation implements PublisherService{
 
 	@Override
 	public Publisher addpublisher(Publisher publisher) {
+		String pubid=publisher.getPubId();
+		if(publisherrepository.findByPubId(pubid)==null) {
 		return publisherrepository.save(publisher);
+		}else {
+			return null;
+			}
 	}
 
 	@Override
 	public List<Employee> getbypubid(String pubid) {
-		Publisher publisher=publisherrepository.findBypubId(pubid);
+		Publisher publisher=publisherrepository.findByPubId(pubid);
 		List<Employee> emplist=employeerepository.findByPublisher(publisher);
 		return emplist;
 	}
@@ -85,6 +96,8 @@ public class PublisherServiceImplementation implements PublisherService{
 		return emp;
 		
 	}
+
+
 
 
 }

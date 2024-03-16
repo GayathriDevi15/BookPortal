@@ -14,5 +14,7 @@ public interface EmployeeRepository extends JpaRepository<Employee,String>{
 //	List<Employee> findByFname();
 	List<Employee> findAllByPublisherPubIdAndFname(String pubid, String fname);
 
+	List<Employee> deleteByPublisher(Publisher pub);
+
 
 }
