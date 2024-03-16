@@ -1,4 +1,4 @@
-package com.bookpartnerportal.bookpartnerportal.Publisherexception;
+package com.bookpartnerportal.bookpartnerportal.publisherexception;
 
 public class TitleswithPubdateNotFoundException extends RuntimeException {
   public TitleswithPubdateNotFoundException(String message) {
