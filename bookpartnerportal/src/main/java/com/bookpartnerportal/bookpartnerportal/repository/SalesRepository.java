@@ -22,4 +22,7 @@ public interface SalesRepository extends JpaRepository<Sales,String> {
     @Modifying
     @Query("Delete from Sales s where s.title.titleId= :titleId")
 	void deleteByTitleId(String titleId);
+    @Query("SELECT s FROM Sales s WHERE s.store.storId = :storeId")
+    List<Sales> findByStoreId(String storeId);
+
 }
