@@ -1,7 +1,6 @@
 package com.bookpartnerportal.bookpartnerportal.repository;
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +12,10 @@ import com.bookpartnerportal.bookpartnerportal.bean.TitleAuthor;
 import com.bookpartnerportal.bookpartnerportal.bean.Titles;
 @Repository
 public interface TitleAuthorRepository extends JpaRepository<TitleAuthor,String> {
- 
+@Modifying
+@Query("delete from TitleAuthor where author= :author")
+void deleteByAuthor(@Param("author") Author author);
+
 List<TitleAuthor> findByAuthor(Author author);
 
 List<TitleAuthor> findByTitle(Titles title);
