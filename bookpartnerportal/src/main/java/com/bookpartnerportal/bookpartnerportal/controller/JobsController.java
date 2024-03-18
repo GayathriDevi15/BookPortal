@@ -2,7 +2,6 @@ package com.bookpartnerportal.bookpartnerportal.controller;
 
 import java.time.LocalDate;
 
-import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,7 +47,7 @@ public class JobsController {
 
 	   public ResponseEntity<SuccessResponse> addnewjobs(@RequestBody Jobs job){
 		   Jobs newjob=jobimp.addJobs(job);
-		   if(newjob.getJobDesc().isEmpty()) {
+		   if(newjob==null) {
 				throw new ValidationFailedException("Validation failed");
 			}
 		SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"New Job added successfully");

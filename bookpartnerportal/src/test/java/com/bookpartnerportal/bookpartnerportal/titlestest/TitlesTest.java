@@ -37,7 +37,7 @@ public class TitlesTest {
         "pub": {
             "pubId": "0736",
             "pubName": "New Moon Books",
-            "city": "Boston",
+            "city": "Andra",
             "state": "MA",
             "country": "USA"
         }

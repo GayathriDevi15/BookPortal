@@ -150,10 +150,7 @@ public class PublisherController {
 	   if(newpub==null) {
 		   throw new ValidationFailedException("Validation failed");
 	   }
-	   else if(newpub.getCity().isEmpty()||newpub.getCountry().isEmpty()||newpub.getPubId().isEmpty()||
-			   newpub.getState().isEmpty()) {
-		   throw new ValidationFailedException("Validation failed");
-	   }
+
 	   SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"New Publisher added successfully");
 	   return new ResponseEntity<>(successResponse,HttpStatus.CREATED);
    }
