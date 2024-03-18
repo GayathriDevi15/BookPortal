@@ -1,4 +1,5 @@
 package com.bookpartnerportal.bookpartnerportal.controller;
+
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
@@ -142,11 +143,11 @@ public class AuthorController {
 	@DeleteMapping("/api/authors/{au_id}")
 
 	public ResponseEntity<CustomResponse> deleteAuthor(@PathVariable("au_id") String au_id) {
-		Author au=authorService.getAuthorsByAuid(au_id);
-		if (au==null) {
+		Author au = authorService.getAuthorsByAuid(au_id);
+		if (au == null) {
 			throw new AuthorDeleteException("Author with this author id not found");
 		}
-		
+
 		authorService.deleteAuthor(au_id);
 		CustomResponse customeResponse = new CustomResponse(LocalDate.now(), "Author with id deleted successfully");
 		return new ResponseEntity<>(customeResponse, HttpStatus.OK);
