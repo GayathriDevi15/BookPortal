@@ -1,6 +1,7 @@
 package com.bookpartnerportal.bookpartnerportal.serviceimplementation;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,6 +67,9 @@ public class PublisherServiceImplementation implements PublisherService{
 	@Override
 	public Publisher updatepublisher(String pubid, Publisher publisher) {
 		if((publisherrepository.existsById(pubid))) {
+			if(publisher.getCountry()==null) {
+				 publisher.setCountry("USA");
+			 }
 			publisher.setPubId(pubid);
 			return publisherrepository.save(publisher);
 		}
@@ -75,11 +79,22 @@ public class PublisherServiceImplementation implements PublisherService{
 	@Override
 	public Publisher addpublisher(Publisher publisher) {
 		String pubid=publisher.getPubId();
-		if(publisherrepository.findByPubId(pubid)==null) {
-		return publisherrepository.save(publisher);
-		}else {
+		if(publisherrepository.findByPubId(pubid)==null&&pubid!=null) {
+			 if(publisher.getCountry()==null) {
+				 publisher.setCountry("USA");
+			 }
+			 List<String> pubIdList=Arrays.asList("1389","0736","0877","1622","1756");
+			 String pubregx="^99[0-9][0-9]$";
+			 if(pubIdList.contains(pubid)||pubid.matches(pubregx))
+			 {
+					return publisherrepository.save(publisher);
+
+			 }
+			 
+		}
 			return null;
-			}
+			
+		
 	}
 
 	@Override
