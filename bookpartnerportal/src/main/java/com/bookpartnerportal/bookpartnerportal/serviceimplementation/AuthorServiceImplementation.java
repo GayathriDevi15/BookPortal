@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import com.bookpartnerportal.bookpartnerportal.authorexception.AuthorAddException;
 import com.bookpartnerportal.bookpartnerportal.bean.Author;
-import com.bookpartnerportal.bookpartnerportal.exception.AuthorAddException;
 import com.bookpartnerportal.bookpartnerportal.repository.AuthorRepository;
 import com.bookpartnerportal.bookpartnerportal.repository.TitleAuthorRepository;
 import com.bookpartnerportal.bookpartnerportal.service.AuthorService;

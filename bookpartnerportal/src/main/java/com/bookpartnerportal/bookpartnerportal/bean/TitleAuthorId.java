@@ -1,7 +1,6 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
- 
+
 import java.io.Serializable;
- 
 public class TitleAuthorId implements Serializable {
 	private Author author;
 	private Titles title;
