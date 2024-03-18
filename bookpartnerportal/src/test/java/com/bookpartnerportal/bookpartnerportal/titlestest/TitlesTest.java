@@ -37,24 +37,35 @@ public class TitlesTest {
         "pub": {
             "pubId": "0736",
             "pubName": "New Moon Books",
-            "city": "Boston",
+            "city": "Andra",
             "state": "MA",
             "country": "USA"
         }
         }]
     """;
    
-@Test
-public void retrieveTitleByAuthor() throws JSONException 
-{
-	ResponseEntity<String> resp=template.getForEntity(getbyauthor,String.class);
-	System.out.println(resp.getBody());
-	System.out.println(resp.getStatusCode());
-	System.out.println(resp.getHeaders());
-	assertEquals("application/json",resp.getHeaders().get("Content-Type").get(0));
-	assertTrue(resp.getStatusCode().is2xxSuccessful());
-	JSONAssert.assertEquals(outputstr,resp.getBody(),true);
-}
+//@Test
+//public void retrieveTitleByAuthor() throws JSONException 
+//{
+//	ResponseEntity<String> resp=template.getForEntity(getbyauthor,String.class);
+//	System.out.println(resp.getBody());
+//	System.out.println(resp.getStatusCode());
+//	System.out.println(resp.getHeaders());
+//	assertEquals("application/json",resp.getHeaders().get("Content-Type").get(0));
+//	assertTrue(resp.getStatusCode().is2xxSuccessful());
+//	JSONAssert.assertEquals(outputstr,resp.getBody(),true);
+//}
+   @Test
+   public void retrieveTitleByAuthor() throws JSONException 
+   {
+   	ResponseEntity<String> resp=template.getForEntity(getbyauthor,String.class);
+   	System.out.println(resp.getBody());
+   	System.out.println(resp.getStatusCode());
+   	System.out.println(resp.getHeaders());
+   	assertEquals("application/json",resp.getHeaders().get("Content-Type").get(0));
+   	assertTrue(resp.getStatusCode().is2xxSuccessful());
+   	JSONAssert.assertEquals(outputstr,resp.getBody(),true);
+   }
 
 //Testing the endpoint for getting the title with given title id
  

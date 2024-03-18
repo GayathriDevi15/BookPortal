@@ -13,9 +13,18 @@ public class JobsServiceImplementation implements JobsService{
 
 	private JobsRepository jobrepo;
 	@Override
-	public Jobs addJobs(Jobs jobs) {
-
-		return jobrepo.save(jobs);
+	public Jobs addJobs(Jobs jobs) {		
+		int jobId=jobs.getJobId();
+    	if(jobrepo.findByJobId(jobId)==null && jobs.getMinLvl()>=10 && jobs.getMaxLvl()!=0 &&  jobs.getMaxLvl()<=250) {
+    		if(jobs.getJobDesc()==null) {
+    			jobs.setJobDesc("New Position - title not formalized yet");
+    		}
+   	    Jobs savedJobs= jobrepo.save(jobs);
+   	    return savedJobs;
+   	    }
+    	else {
+    		return null;
+    	}	
 	}
 	
 	@Override
