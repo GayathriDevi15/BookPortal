@@ -9,4 +9,5 @@ public interface EmployeeService {
     List<Employee> getEmployeesByPublisherId(String publisherId);
     List<Employee> getEmployeesfnamesByPublisherId(String publisherId, String fname);
 	void deleteEmployeebyEmpId(String empId);
+	List<Employee> getEmployeeByJobId(String jobId);
 }

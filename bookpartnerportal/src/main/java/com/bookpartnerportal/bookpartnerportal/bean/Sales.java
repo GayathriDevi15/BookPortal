@@ -1,4 +1,5 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -16,33 +17,33 @@ import jakarta.persistence.Table;
 
 @Entity
 @IdClass(SalesId.class)
-@Table(name="sales")
+@Table(name = "sales")
 public class Sales {
 	@Id
-	@ManyToOne(cascade=CascadeType.ALL)
-	@OnDelete(action=OnDeleteAction.CASCADE)
-    @JoinColumn(name = "stor_id", referencedColumnName = "stor_id")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	@JoinColumn(name = "stor_id", referencedColumnName = "stor_id")
 	private Stores store;
 	@Id
-	@ManyToOne(cascade=CascadeType.ALL)
-	//@OnDelete(action=OnDeleteAction.CASCADE)
-    @JoinColumn(name = "title_id", referencedColumnName = "title_id")
-    private Titles title;
-	
+	@ManyToOne(cascade = CascadeType.ALL)
+	// @OnDelete(action=OnDeleteAction.CASCADE)
+	@JoinColumn(name = "title_id", referencedColumnName = "title_id")
+	private Titles title;
+
 	@Id
-    @Column(name="ord_num",nullable=false,columnDefinition="varchar(20)")
+	@Column(name = "ord_num", nullable = false, columnDefinition = "varchar(20)")
 	private String ordNum;
-    
-    @Column(name="ord_date",nullable=false,columnDefinition="TIMESTAMP")
+
+	@Column(name = "ord_date", nullable = false, columnDefinition = "TIMESTAMP")
 	private LocalDateTime ordDate;
-    
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private short qty;
-    @Column(name="payterms",nullable=false,columnDefinition="varchar(12)")
-	private String payTerms; 
-    
+	@Column(name = "payterms", nullable = false, columnDefinition = "varchar(12)")
+	private String payTerms;
+
 	public Sales() {
-		
+
 	}
 
 	public Sales(Stores store, Titles title, String ordNum, LocalDateTime ordDate, short qty, String payTerms) {

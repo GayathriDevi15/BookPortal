@@ -24,5 +24,7 @@ public interface SalesRepository extends JpaRepository<Sales,String> {
 	void deleteByTitleId(String titleId);
     @Query("SELECT s FROM Sales s WHERE s.store.storId = :storeId")
     List<Sales> findByStoreId(String storeId);
+    
+    
 
 }
