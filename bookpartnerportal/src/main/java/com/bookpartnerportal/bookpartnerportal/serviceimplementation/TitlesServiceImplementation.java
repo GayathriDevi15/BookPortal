@@ -66,7 +66,10 @@ public class TitlesServiceImplementation implements TitlesService{
     @Override
    	public Titles addTitle(Titles title) {
     	String titleId=title.getTitleId();
-    	if(titlesRepository.findByTitleId(titleId)==null) {
+    	if(titlesRepository.findByTitleId(titleId)==null &&title.getTitleId()!=null && title.getTitle()!=null&&title.getPubDate()!=null){
+    	if(title.getType()==null) {
+    		title.setType("UNDECIDED");
+    	}
    	    Titles savedTitle=titlesRepository.save(title);
    	    return savedTitle;
    	    }
@@ -145,13 +148,15 @@ public class TitlesServiceImplementation implements TitlesService{
 	
 	@Override
 	public Titles updateTitles(String titleId,Titles title) {
-		if(titlesRepository.existsById(titleId))
+		if(titlesRepository.existsById(titleId)&&title.getTitleId()!=null && title.getTitle()!=null&&title.getPubDate()!=null)
 		{
+			if(title.getType()==null) {
+				title.setType("business");
+			}
 			title.setTitleId(titleId);
 			return titlesRepository.save(title);
 		}
 		return null;
 	}
-	
-   
 }
+	
