@@ -1,5 +1,6 @@
 package com.bookpartnerportal.bookpartnerportal.publishertest;
-public class Validation {
+//publisherId
+public class PublisherValidation {
 	public static boolean extractString(String endpoint) {
 		
         String[] parts = endpoint.split("/");

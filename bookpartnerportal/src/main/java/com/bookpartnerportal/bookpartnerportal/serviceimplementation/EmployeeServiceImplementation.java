@@ -6,11 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.bookpartnerportal.bookpartnerportal.bean.Employee;
-import com.bookpartnerportal.bookpartnerportal.bean.Publisher;
 import com.bookpartnerportal.bookpartnerportal.repository.EmployeeRepository;
-import com.bookpartnerportal.bookpartnerportal.repository.PublisherRepository;
 import com.bookpartnerportal.bookpartnerportal.service.EmployeeService;
-import com.bookpartnerportal.bookpartnerportal.service.PublisherService;
 
 @Service
 public class EmployeeServiceImplementation implements EmployeeService{
@@ -38,6 +35,11 @@ public class EmployeeServiceImplementation implements EmployeeService{
 	public List<Employee> getEmployeesfnamesByPublisherId(String publisherId, String fname) {
 		List<Employee> emp=emprepository.findAllByPublisherPubIdAndFname(publisherId, fname);
 		return emp;
+	}
+
+	@Override
+	public void deleteEmployeebyEmpId(String empId) {
+		emprepository.deleteById(empId);
 	}
 
 }

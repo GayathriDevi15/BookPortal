@@ -167,7 +167,7 @@ public class PublisherTest {
 		   private static String PubById="/api/publishers/99999";
 		   @Test
 			public void testgetAllPublishersbyId() throws JSONException, org.json.JSONException {
-				assertFalse(Validation.extractString(PubById));
+				assertFalse(PublisherValidation.extractString(PubById));
 				
 
 	 
