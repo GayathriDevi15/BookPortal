@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bookpartnerportal.bookpartnerportal.authorexception.SalesNotFoundByStoreIdException;
 import com.bookpartnerportal.bookpartnerportal.bean.Sales;
 import com.bookpartnerportal.bookpartnerportal.bean.Titles;
 import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesDetailsNotFoundException;
@@ -22,6 +23,7 @@ import com.bookpartnerportal.bookpartnerportal.success.SuccessResponse;
 @RequestMapping("/api/sales")
 public class SalesController {
 	private SalesServiceImplementation salesService;
+	
 	
 	public SalesController(SalesServiceImplementation salesService) {
 		this.salesService = salesService;
@@ -44,4 +46,15 @@ public class SalesController {
 		  return new ResponseEntity<>(sales,HttpStatus.OK);
 		  
 	  }
+	  //getting store details by storeId.
+	  	@GetMapping("/store/{storeId}")
+	  	public ResponseEntity<List<Sales>> getSalesByStoreId(@PathVariable("storeId") String storeId) {
+	  		List<Sales> sales = salesService.getSalesByStoreId(storeId);
+	  		if (sales.isEmpty()) {
+	  			throw new SalesNotFoundByStoreIdException("Sales not found by storeId");
+	  		}
+	  		return new ResponseEntity<>(sales, HttpStatus.OK);
+	  	}
+	  
+	  
 }

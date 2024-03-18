@@ -25,5 +25,21 @@ public class JobsTest {
 	    	assertEquals(HttpStatus.FOUND,resp.getStatusCode());
 	    	assertTrue(resp.getBody().contains("\"jobDesc\":\"Publisher\""));
 	    }
+	    private static String getByJobId="/api/jobs/jobId/1";
+		   String outputstr6="""
+				  [ {
+	        "jobId": 1,
+	        "jobDesc": "New Hire - Job not specified",
+	        "minLvl": 10,
+	        "maxLvl": 10
+	    }]
+				   		""";
+		    @Test
+		    public void getByJobId() throws JSONException{
+		    	ResponseEntity<String> resp=template.getForEntity(getByJobId,String.class);
+		    	assertEquals(HttpStatus.OK,resp.getStatusCode());
+		    	assertTrue(resp.getBody().contains("\"jobDesc\":\"New Hire - Job not specified\""));
+		    	//jobDesc": "New Hire - Job not specified
+		    }
 
 }
