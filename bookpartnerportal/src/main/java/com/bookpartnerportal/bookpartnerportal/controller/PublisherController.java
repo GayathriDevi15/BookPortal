@@ -148,6 +148,7 @@ public class PublisherController {
 	   if(newpub==null) {
 		   throw new ValidationFailedException("Validation failed");
 	   }
+
 	   SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"New Publisher added successfully");
 	   return new ResponseEntity<>(successResponse,HttpStatus.CREATED);
    }

@@ -3,6 +3,7 @@ package com.bookpartnerportal.bookpartnerportal.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +56,7 @@ public class JobsController {
 
 	   public ResponseEntity<SuccessResponse> addnewjobs(@RequestBody Jobs job){
 		   Jobs newjob=jobimp.addJobs(job);
-		   if(newjob.getJobDesc().isEmpty()) {
+		   if(newjob==null) {
 				throw new ValidationFailedException("Validation failed");
 			}
 		SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"New Job added successfully");
