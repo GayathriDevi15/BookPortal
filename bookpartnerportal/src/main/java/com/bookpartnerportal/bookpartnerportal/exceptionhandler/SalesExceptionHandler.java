@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.bookpartnerportal.bookpartnerportal.authorexception.SalesNotFoundByStoreIdException;
 import com.bookpartnerportal.bookpartnerportal.salesexceptions.SalesDetailsNotFoundException;
 import com.bookpartnerportal.bookpartnerportal.salesexceptions.SaleswithOrdnumNotFoundException;
 import com.bookpartnerportal.bookpartnerportal.titlesexceptions.ValidationException;
@@ -22,6 +23,16 @@ public class SalesExceptionHandler {
 			return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
 			
 	  }
+
+	// Sales details by storeId not found
+		@ExceptionHandler(SalesNotFoundByStoreIdException.class)
+		public ResponseEntity<ErrorResponse> handlerexception(SalesNotFoundByStoreIdException ex) {
+			ErrorResponse err = new ErrorResponse();
+			err.setTimeStamp(LocalDate.now());
+			err.setMessage(ex.getMessage());
+
+			return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+		}
 	
 	@ExceptionHandler
 	  public ResponseEntity<ErrorResponse> handleException(SaleswithOrdnumNotFoundException exe){
@@ -39,5 +50,6 @@ public class SalesExceptionHandler {
 			return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
 			
 		}
+	
 	
 }

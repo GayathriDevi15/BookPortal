@@ -1,6 +1,7 @@
 package com.bookpartnerportal.bookpartnerportal.publishertest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.json.JSONException;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -20,51 +22,79 @@ public class PublisherTest {
  
 //    @Test
 //    public void testgetAllPublishersbycity() throws JSONException, org.json.JSONException {
-	private	String allpublisherscity = "/api/publishers/city/Andra"; 
+	private	String allpublisherscity = "/api/publishers/city/Berkeley"; 
 		String expectedcity = 
 				"""
 				[
     {
-        "pubId": "0736",
-        "pubName": "New Moon Books",
-        "city": "Andra",
-        "state": "MA",
+        "pubId": "1389",
+        "pubName": "Algodata Infosystems",
+        "city": "Berkeley",
+        "state": "CA",
         "country": "USA"
     }
 ]
 				""";
 		
-	private String allpublishersCountry = "/api/publishers/country/france"; 
+	private String allpublishersCountry = "/api/publishers/country/usa"; 
 	String expectedcountry = 
 				"""
     [
     {
-        "pubId": "9929",
-        "pubName": "hari",
-        "city": "Paris",
-        "state": "KA",
-        "country": "France"
+        "pubId": "0736",
+        "pubName": "New Moon Books",
+        "city": "Boston",
+        "state": "MA",
+        "country": "USA"
     },
     {
-        "pubId": "9936",
-        "pubName": "sravs",
-        "city": "asdfgh",
-        "state": "AK",
-        "country": "France"
+        "pubId": "0877",
+        "pubName": "Binnet & Hardley",
+        "city": "Washington",
+        "state": "DC",
+        "country": "USA"
+    },
+    {
+        "pubId": "1389",
+        "pubName": "Algodata Infosystems",
+        "city": "Berkeley",
+        "state": "CA",
+        "country": "USA"
+    },
+    {
+        "pubId": "1622",
+        "pubName": "Five Lakes Publishing",
+        "city": "Chicago",
+        "state": "IL",
+        "country": "USA"
+    },
+    {
+        "pubId": "1756",
+        "pubName": "Ramona Publishers",
+        "city": "Dallas",
+        "state": "TX",
+        "country": "USA"
+    },
+    {
+        "pubId": "9952",
+        "pubName": "Scootney Books",
+        "city": "New York",
+        "state": "NY",
+        "country": "USA"
     }
 ]
 
 						""";
-	private String allpublishersname = "/api/publishers/pubname/sravani k"; 
+	private String allpublishersname = "/api/publishers/pubname/New Moon Books"; 
 	String expectedbyname = 
 				"""
 				[
     {
-        "pubId": "9919",
-        "pubName": "sravani k",
-        "city": "kanigiri",
-        "state": "AP",
-        "country": "India"
+        "pubId": "0736",
+        "pubName": "New Moon Books",
+        "city": "Boston",
+        "state": "MA",
+        "country": "USA"
     }
 ]
 						""";
@@ -75,50 +105,13 @@ public class PublisherTest {
     {
         "pubId": "0736",
         "pubName": "New Moon Books",
-        "city": "Andra",
+        "city": "Boston",
         "state": "MA",
         "country": "USA"
     }
 ]
 						""";
-	private String allemployeeswithIDFname = "/api/employee/pubid/0736/fname/Laurence"; 
-	String expectedbyPubIDname = 
-				"""
-				
-    {
-        "empId": "LAL21447M",
-        "fname": "Laurence",
-        "minit": "A",
-        "lname": "Lebihan",
-        "job": {
-            "jobId": 5,
-            "jobDesc": "Publisher",
-            "minLvl": 150,
-            "maxLvl": 250
-        },
-        "jobLvl": 175,
-        "publisher": {
-            "pubId": "0736",
-            "pubName": "New Moon Books",
-            "city": "Andra",
-            "state": "MA",
-            "country": "USA"
-        },
-        "hireDate": "1990-06-03T00:00:00"
-    }
 
-						""";
-
-	private String alljobs = "/api/jobs/5"; 
-	String expectedjob = 
-				"""
-				[{
-    "jobId": 5,
-    "jobDesc": "Publisher",
-    "minLvl": 150,
-    "maxLvl": 250
-}]
-					""";
 	
 				@Autowired
 			    private TestRestTemplate template;
@@ -174,7 +167,24 @@ public class PublisherTest {
 
  
     }
+		private static String deleteById="/api/publishers/9912";
 
-		
+		   @Test
+
+		   public void deleteByTitleId() throws JSONException{
+
+			   ResponseEntity<String> resp=template.exchange(deleteById,HttpMethod.DELETE, null,String.class);
+
+			   assertTrue(resp.getStatusCode().is4xxClientError());
+
+		   }
+			private static String publisherId="/api/publishers/99127";
+
+		   @Test
+			public void testgetAllPublishersbyId() throws JSONException, org.json.JSONException {
+				assertFalse(PublisherValidation.extractString(publisherId));
+
+	 
+	    }	
 		
     }
