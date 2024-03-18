@@ -1,26 +1,28 @@
 package com.bookpartnerportal.bookpartnerportal.bean;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+
 @Entity
-@Table(name="jobs")
+@Table(name = "jobs")
 public class Jobs {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="job_id",nullable=false,columnDefinition="smallint")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "job_id", nullable = false, columnDefinition = "smallint")
 	private int jobId;
-    @Column(name="job_desc",nullable=false,columnDefinition="varchar(50) default 'New Position - title not formalized yet'")
+	@Column(name = "job_desc", nullable = false, columnDefinition = "varchar(50) default 'New Position - title not formalized yet'")
 	private String jobDesc;
-    @Column(name="min_lvl",nullable=false,columnDefinition="int")
+	@Column(name = "min_lvl", nullable = false, columnDefinition = "int")
 	private int minLvl;
-    @Column(name="max_lvl",nullable=false,columnDefinition="int")
+	@Column(name = "max_lvl", nullable = false, columnDefinition = "int")
 	private int maxLvl;
-	
+
 	public Jobs(int jobId, String jobDesc, int minLvl, int maxLvl) {
-		
+
 		this.jobId = jobId;
 		this.jobDesc = jobDesc;
 		this.minLvl = minLvl;
@@ -60,7 +62,7 @@ public class Jobs {
 	}
 
 	public Jobs() {
-		
+
 	}
 
 }

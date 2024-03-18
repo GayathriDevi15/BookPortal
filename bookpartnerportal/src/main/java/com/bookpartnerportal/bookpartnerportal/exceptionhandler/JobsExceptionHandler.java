@@ -17,25 +17,25 @@ import com.bookpartnerportal.bookpartnerportal.publisherexception.ValidationFail
 
 @ControllerAdvice
 public class JobsExceptionHandler {
-  
-  @ExceptionHandler(JobsWithJobIdNotFoundException.class)
-  public ResponseEntity<ErrorResponse> handleException(JobsWithJobIdNotFoundException exe){
-		ErrorResponse err=new ErrorResponse();
+
+	@ExceptionHandler(JobsWithJobIdNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(JobsWithJobIdNotFoundException exe) {
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(exe.getMessage());
-		return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-		
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
 	}
-  
-  @ExceptionHandler(ValidationFailedException.class)
-  public ResponseEntity<ErrorResponse> handleException(ValidationFailedException exe){
-		ErrorResponse err=new ErrorResponse();
+
+	@ExceptionHandler(ValidationFailedException.class)
+	public ResponseEntity<ErrorResponse> handleException(ValidationFailedException exe) {
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(exe.getMessage());
-		return new ResponseEntity<>(err,HttpStatus.BAD_REQUEST);
-		
+		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+
 	}
-  
+
 	// Generic Exception
 	@ExceptionHandler
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -46,80 +46,74 @@ public class JobsExceptionHandler {
 
 		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
 	}
-	
-	
-	  @ExceptionHandler(JobsNotFoundException.class)
-	  	public ResponseEntity<ErrorResponse>handleException(JobsNotFoundException ex)
-	  	{
-	  	//create ErrorResponse object
-	  	 
-	    	ErrorResponse err = new ErrorResponse();
-			err.setTimeStamp(LocalDate.now());
-			err.setMessage(ex.getMessage());
-	  	 
-	  	//return ResponseEntity
-	  	 
-	  	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-	  	 
-	  	}
-	
-	 @ExceptionHandler(MaxLvlNotFoundException.class)
-	   	public ResponseEntity<ErrorResponse>handleException(MaxLvlNotFoundException ex)
-	   	{
-	   	//create ErrorResponse object
-	   	 
-	    	ErrorResponse err = new ErrorResponse();
-			err.setTimeStamp(LocalDate.now());
-			err.setMessage(ex.getMessage());
-	   	 
-	   	//return ResponseEntity
-	   	 
-	   	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-	   	 
-	   	}
-	    @ExceptionHandler(MinLvlNotFoundException.class)
-	   	public ResponseEntity<ErrorResponse>handleException(MinLvlNotFoundException ex)
-	   	{
-	   	//create ErrorResponse object
-	   	 
-	    	ErrorResponse err = new ErrorResponse();
-			err.setTimeStamp(LocalDate.now());
-			err.setMessage(ex.getMessage());
-	   	 
-	   	//return ResponseEntity
-	   	 
-	   	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-	   	 
-	   	}
-	    @ExceptionHandler(JobIdNotFoundException.class)
-	  	public ResponseEntity<ErrorResponse>handleException(JobIdNotFoundException ex)
-	  	{
-	  	//create ErrorResponse object
-	    	ErrorResponse err = new ErrorResponse();
-			err.setTimeStamp(LocalDate.now());
-			err.setMessage(ex.getMessage());
-	  	 
-	  	//return ResponseEntity
-	  	 
-	  	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-	  	 
-	  	}
-	    @ExceptionHandler(JobsUpdateValidationException.class)
-	  	public ResponseEntity<ErrorResponse>handleException(JobsUpdateValidationException ex)
-	  	{
-	  	//create ErrorResponse object
-	  	 
-	    	ErrorResponse err = new ErrorResponse();
-			err.setTimeStamp(LocalDate.now());
-			err.setMessage(ex.getMessage());
-	  	 
-	  	//return ResponseEntity
-	  	 
-	  	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-	  	 
-	  	}
-  
-  
- 
-  	
+
+	@ExceptionHandler(JobsNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(JobsNotFoundException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
+		err.setTimeStamp(LocalDate.now());
+		err.setMessage(ex.getMessage());
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
+
+	@ExceptionHandler(MaxLvlNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(MaxLvlNotFoundException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
+		err.setTimeStamp(LocalDate.now());
+		err.setMessage(ex.getMessage());
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
+
+	@ExceptionHandler(MinLvlNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(MinLvlNotFoundException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
+		err.setTimeStamp(LocalDate.now());
+		err.setMessage(ex.getMessage());
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
+
+	@ExceptionHandler(JobIdNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(JobIdNotFoundException ex) {
+		// create ErrorResponse object
+		ErrorResponse err = new ErrorResponse();
+		err.setTimeStamp(LocalDate.now());
+		err.setMessage(ex.getMessage());
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
+
+	@ExceptionHandler(JobsUpdateValidationException.class)
+	public ResponseEntity<ErrorResponse> handleException(JobsUpdateValidationException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
+		err.setTimeStamp(LocalDate.now());
+		err.setMessage(ex.getMessage());
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
+
 }

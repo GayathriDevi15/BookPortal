@@ -60,7 +60,7 @@ public class StoreTest {
 	 		JSONAssert.assertEquals(expectedOutput, response.getBody(), false);
 	    }
 
-	//Testing the endpoint for getting the title with given title id
+	//Testing the endpoint for getting the store with given store id
 	  private static String getByStoreId="/api/stores/storId/7131";
 	String outputstr2=
 			 """
@@ -75,12 +75,14 @@ public class StoreTest {
 	""";
 	@Test
 	public void retrieveStoreByStoreId() throws JSONException{
+		assertTrue(StoreValidation.extractString(getByStoreId));
 		 ResponseEntity<String> resp=template.getForEntity(getByStoreId,String.class);
 		 System.out.println(resp.getBody());
 		 System.out.println(resp.getStatusCode());
 		 System.out.println(resp.getHeaders());
 	 assertTrue(resp.getBody().contains("Quality"));
 		 JSONAssert.assertEquals(outputstr2,resp.getBody(),true);
+		// assertFalse(StoreValidation.extractString(getByStoreId));
 	}
 	
 	//Testing the endpoint of 
@@ -102,7 +104,7 @@ public class StoreTest {
 		   assertTrue(resp.getStatusCode().is4xxClientError());
 	   }
 	 
-	 //Testing the endpoint of getByPubdate
+	 //Testing the endpoint of getByZip
 	   private static String getByZip="/api/stores/zip/98014";
 	   String outputstr5="""
 	   	[

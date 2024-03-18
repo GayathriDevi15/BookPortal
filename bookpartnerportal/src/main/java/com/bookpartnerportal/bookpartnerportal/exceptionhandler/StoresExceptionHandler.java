@@ -18,113 +18,102 @@ import com.bookpartnerportal.bookpartnerportal.storeexception.ZipNotFoundExcepti
 
 @ControllerAdvice
 public class StoresExceptionHandler {
-	
-    @ExceptionHandler(ZipNotFoundException.class)
-	public ResponseEntity<ErrorResponse>handleException(ZipNotFoundException ex)
-	{
-	//create ErrorResponse object
-	 
-    	ErrorResponse err = new ErrorResponse();
+
+	@ExceptionHandler(ZipNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(ZipNotFoundException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(ex.getMessage());
 
-	
-	
-	//return ResponseEntity
-	 
-	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-	 
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
 	}
-    @ExceptionHandler(CityNotFoundException.class)
-	public ResponseEntity<ErrorResponse>handleException(CityNotFoundException ex)
-	{
-	//create ErrorResponse object
-	 
-    	ErrorResponse err = new ErrorResponse();
+
+	@ExceptionHandler(CityNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(CityNotFoundException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(ex.getMessage());
-	 
-	//return ResponseEntity
-	 
-	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-	 
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
 	}
-    @ExceptionHandler(StoreIdNotFoundException.class)
-	public ResponseEntity<ErrorResponse>handleException(StoreIdNotFoundException ex)
-	{
-	//create ErrorResponse object
-	 
-    	ErrorResponse err = new ErrorResponse();
+
+	@ExceptionHandler(StoreIdNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(StoreIdNotFoundException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(ex.getMessage());
-	 
-	//return ResponseEntity
-	 
-	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-	 
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
 	}
-    
-    
-    @ExceptionHandler(StorIdNotFoundException.class)
-  	public ResponseEntity<ErrorResponse>handleException(StorIdNotFoundException ex)
-  	{
-  	//create ErrorResponse object
-  	 
-    	ErrorResponse err = new ErrorResponse();
+
+	@ExceptionHandler(StorIdNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(StorIdNotFoundException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(ex.getMessage());
-  	 
-  	//return ResponseEntity
-  	 
-  	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-  	 
-  	}
-    @ExceptionHandler(StoresNotFoundException.class)
-  	public ResponseEntity<ErrorResponse>handleException(StoresNotFoundException ex)
-  	{
-  	//create ErrorResponse object
-    	ErrorResponse err = new ErrorResponse();
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
+
+	@ExceptionHandler(StoresNotFoundException.class)
+	public ResponseEntity<ErrorResponse> handleException(StoresNotFoundException ex) {
+		// create ErrorResponse object
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(ex.getMessage());
-  	 
-  	//return ResponseEntity
-  	 
-  	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-  	 
-  	}
-  
-    
-    @ExceptionHandler(StoresUpdateValidationException.class)
-  	public ResponseEntity<ErrorResponse> handleException(StoresUpdateValidationException ex)
-  	{
-  	//create ErrorResponse object
-  	 
-    	ErrorResponse err = new ErrorResponse();
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
+
+	@ExceptionHandler(StoresUpdateValidationException.class)
+	public ResponseEntity<ErrorResponse> handleException(StoresUpdateValidationException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(ex.getMessage());
-  	 
-  	//return ResponseEntity
-  	 
-  	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-  	 
-  	}
-    
-    @ExceptionHandler(StoresPostValidationException.class)
-  	public ResponseEntity<ErrorResponse>handleException(StoresPostValidationException ex)
-  	{
-  	//create ErrorResponse object
-  	 
-    	ErrorResponse err = new ErrorResponse();
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
+
+	@ExceptionHandler(StoresPostValidationException.class)
+	public ResponseEntity<ErrorResponse> handleException(StoresPostValidationException ex) {
+		// create ErrorResponse object
+
+		ErrorResponse err = new ErrorResponse();
 		err.setTimeStamp(LocalDate.now());
 		err.setMessage(ex.getMessage());
-  	 
-  	//return ResponseEntity
-  	 
-  	return new ResponseEntity<>(err,HttpStatus.NOT_FOUND);
-  	 
-  	}
-    
-   
-    
+
+		// return ResponseEntity
+
+		return new ResponseEntity<>(err, HttpStatus.NOT_FOUND);
+
+	}
 
 }
