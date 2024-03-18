@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bookpartnerportal.bookpartnerportal.bean.Employee;
 import com.bookpartnerportal.bookpartnerportal.bean.Publisher;
+import com.bookpartnerportal.bookpartnerportal.bean.Titles;
 
 public interface PublisherService {
 	
@@ -17,6 +18,5 @@ public interface PublisherService {
 	Publisher updatepublisher(String pubid,Publisher publisher);
 	Publisher addpublisher(Publisher publisher);
 	List<Employee> getbypubid(String pubid);
-	
 
 }

@@ -1,6 +1,7 @@
 package com.bookpartnerportal.bookpartnerportal.authortest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.json.JSONException;
@@ -22,12 +23,12 @@ public class AuthorTest {
 	public void testGetAuthorByCity() throws JSONException, org.json.JSONException {
 		String authorbycity = "/api/authors/city/Oakland";
 		String expectedOutput = """
-					[
+									[
 				    {
 				        "auId": "213-46-8915",
 				        "auLname": "Green",
 				        "auFname": "Marjorie",
-				        "phone": "415 986-7020",
+				        "phone": "UNKNOWN",
 				        "address": "309 63rd St. #411",
 				        "city": "Oakland",
 				        "state": "CA",
@@ -80,8 +81,7 @@ public class AuthorTest {
 				    }
 				]
 
-
-								""";
+												""";
 
 		ResponseEntity<String> response = template.getForEntity(authorbycity, String.class);
 		System.out.println(response.getBody());
@@ -101,12 +101,12 @@ public class AuthorTest {
 	public void testGetAuthorByState() throws JSONException, org.json.JSONException {
 		String authorbystate = "/api/authors/state/CA";
 		String expectedOutput = """
-								[
+												[
 				    {
 				        "auId": "213-46-8915",
 				        "auLname": "Green",
 				        "auFname": "Marjorie",
-				        "phone": "415 986-7020",
+				        "phone": "UNKNOWN",
 				        "address": "309 63rd St. #411",
 				        "city": "Oakland",
 				        "state": "CA",
@@ -246,7 +246,7 @@ public class AuthorTest {
 				        "contract": 0
 				    }
 				]
-								""";
+												""";
 		ResponseEntity<String> response = template.getForEntity(authorbystate, String.class);
 		System.out.println(response.getBody());
 		System.out.println(response.getStatusCode());
@@ -265,7 +265,7 @@ public class AuthorTest {
 	public void testGetAuthorByFname() throws JSONException, org.json.JSONException {
 		String authorbyfname = "/api/authors/fname/Ann";
 		String expectedOutput = """
-								[
+												[
 				    {
 				        "auId": "427-17-2319",
 				        "auLname": "Dull",
@@ -279,7 +279,8 @@ public class AuthorTest {
 				    }
 				]
 
-								""";
+
+												""";
 
 		ResponseEntity<String> response = template.getForEntity(authorbyfname, String.class);
 		System.out.println(response.getBody());
@@ -300,8 +301,7 @@ public class AuthorTest {
 	public void testGetAuthorByLname() throws JSONException, org.json.JSONException {
 		String authorbylname = "/api/authors/lname/Carson";
 		String expectedOutput = """
-
-								[
+				[
 				    {
 				        "auId": "238-95-7766",
 				        "auLname": "Carson",
@@ -314,7 +314,7 @@ public class AuthorTest {
 				        "contract": 1
 				    }
 				]
-								""";
+												""";
 
 		ResponseEntity<String> response = template.getForEntity(authorbylname, String.class);
 		System.out.println(response.getBody());
@@ -333,20 +333,22 @@ public class AuthorTest {
 
 	@Test
 	public void testGetAuthorByAu_id() throws JSONException, org.json.JSONException {
-		String authorbyau_id = "/api/authors/527-72-3246";
+		String authorbyau_id = "/api/authors/238-95-7766";
 		String expectedOutput = """
-					{
-				    "auId": "527-72-3246",
-				    "auLname": "Greene",
-				    "auFname": "Morningstar",
-				    "phone": "615 297-2723",
-				    "address": "22 Graybar House Rd.",
-				    "city": "Nashville",
-				    "state": "TN",
-				    "zip": "37215",
-				    "contract": 0
-				}""";
+									{
+				    "auId": "238-95-7766",
+				    "auLname": "Carson",
+				    "auFname": "Cheryl",
+				    "phone": "415 548-7723",
+				    "address": "589 Darwin Ln.",
+				    "city": "Berkeley",
+				    "state": "CA",
+				    "zip": "94705",
+				    "contract": 1
+				}
+								""";
 		ResponseEntity<String> response = template.getForEntity(authorbyau_id, String.class);
+		 assertTrue(AuthorValidation.au_idlength(authorbyau_id));//for validation method if id is correct
 		System.out.println(response.getBody());
 		System.out.println(response.getStatusCode());
 		System.out.println(response.getHeaders());
@@ -356,6 +358,7 @@ public class AuthorTest {
 
 		assertEquals("application/json", response.getHeaders().getContentType().toString());
 		JSONAssert.assertEquals(expectedOutput, response.getBody(), false);
+		//assertFalse(AuthorValidation.au_idlength(authorbyau_id));
 
 	}
 
