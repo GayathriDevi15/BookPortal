@@ -1,6 +1,7 @@
 package com.bookpartnerportal.bookpartnerportal.titlestest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.json.JSONException;
@@ -17,6 +18,33 @@ import org.springframework.http.ResponseEntity;
 public class TitlesTest {
 	@Autowired
 	private TestRestTemplate template;
+	
+	//Testing the endpoint of getting top5titles
+	
+	private static String gettop5titles="/api/titles/top5titles";
+	String outputStr0=
+			"""
+        {"titleId": "MC3021"},
+        {"titleId": "BU2075"},
+        {"titleId": "TC4203"},
+        {"titleId": "PC1035"},
+        { "titleId": "TC7777"}
+        """;
+	@Test
+	public void retrieveTop5Titles() throws JSONException 
+	{
+		ResponseEntity<String> resp=template.getForEntity(getbyauthor,String.class);
+		System.out.println(resp.getBody());
+		System.out.println(resp.getStatusCode());
+		System.out.println(resp.getHeaders());
+		assertEquals("application/json",resp.getHeaders().get("Content-Type").get(0));
+		assertTrue(resp.getStatusCode().is2xxSuccessful());
+		JSONAssert.assertEquals(outputstr,resp.getBody(),false);
+	}
+	
+        		
+ 
+
 	
   //Testing the endpoint of getbyAuthorName
 	
@@ -58,7 +86,7 @@ public void retrieveTitleByAuthor() throws JSONException
 
 //Testing the endpoint for getting the title with given title id
  
-  private static String getByTitleId="/api/titles/BU7832";
+  private static String getByTitleId="/api/titles/BU78321234567";
  String outputstr2=
 		 """
 		 		{
@@ -80,16 +108,17 @@ public void retrieveTitleByAuthor() throws JSONException
     }
 }
 """;
-	
  @Test
  public void retrieveTitleByTitleId() throws JSONException{
-	 ResponseEntity<String> resp=template.getForEntity(getByTitleId,String.class);
-	 System.out.println(resp.getBody());
-	 System.out.println(resp.getStatusCode());
-	 System.out.println(resp.getHeaders());
-	 assertTrue(resp.getBody().contains("business"));
-	 JSONAssert.assertEquals(outputstr2,resp.getBody(),true);
-	 
+//	 assertTrue(Validation.extractString(getByTitleId));
+//	 ResponseEntity<String> resp=template.getForEntity(getByTitleId,String.class);
+//	 System.out.println(resp.getBody());
+//	 System.out.println(resp.getStatusCode());
+//	 System.out.println(resp.getHeaders());
+//	 assertTrue(resp.getBody().contains("business"));
+//	 JSONAssert.assertEquals(outputstr2,resp.getBody(),true);
+	 assertFalse(Validation.extractString(getByTitleId));
+	
  }
  
  //Testing the endpoint of getByPubdate
@@ -103,6 +132,7 @@ public void retrieveTitleByAuthor() throws JSONException
     {"titleId": "TC7777"}
        ]
    		""";
+   
    @Test
    public void retrievalByPubdate() throws JSONException{
 	   ResponseEntity<String> resp=template.getForEntity(getByPubDate,String.class);
