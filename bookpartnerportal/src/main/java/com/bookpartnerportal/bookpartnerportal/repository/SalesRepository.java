@@ -1,5 +1,6 @@
 package com.bookpartnerportal.bookpartnerportal.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,7 +25,10 @@ public interface SalesRepository extends JpaRepository<Sales,String> {
 	void deleteByTitleId(String titleId);
     @Query("SELECT s FROM Sales s WHERE s.store.storId = :storeId")
     List<Sales> findByStoreId(String storeId);
-    
+    List<Sales> findByOrdDate(LocalDateTime ordDate);
+	@Query("SELECT s FROM Sales s WHERE s.title.titleId = :titleId")
+    List<Sales> findByTitleId(String titleId);
+	Sales findByStoreAndTitle(Stores store, Titles title);
     
 
 }

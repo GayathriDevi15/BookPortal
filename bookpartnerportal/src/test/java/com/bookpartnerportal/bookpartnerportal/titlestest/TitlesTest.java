@@ -1,9 +1,9 @@
 package com.bookpartnerportal.bookpartnerportal.titlestest;
-
+ 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+ 
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -18,9 +18,7 @@ import org.springframework.http.ResponseEntity;
 public class TitlesTest {
 	@Autowired
 	private TestRestTemplate template;
-	
 	//Testing the endpoint of getting top5titles
-	
 	private static String gettop5titles="/api/titles/top5titles";
 	String outputStr0=
 			"""
@@ -41,19 +39,17 @@ public class TitlesTest {
 		assertTrue(resp.getStatusCode().is2xxSuccessful());
 		JSONAssert.assertEquals(outputstr,resp.getBody(),false);
 	}
-	
-        		
- 
 
+
+ 
 	
   //Testing the endpoint of getbyAuthorName
-	
    private static String getbyauthor="/api/titles/authorname/Johnson";
-  
    String outputstr=
      """
-       	[{
-       	"titleId": "PS3333",
+       	[
+    {
+        "titleId": "PS3333",
         "title": "Prolonged Data Deprivation: Four Case Studies",
         "type": "psychology",
         "price": 19.99,
@@ -69,9 +65,9 @@ public class TitlesTest {
             "state": "MA",
             "country": "USA"
         }
-        }]
+    }
+]
     """;
-   
 @Test
 public void retrieveTitleByAuthor() throws JSONException 
 {
@@ -83,45 +79,14 @@ public void retrieveTitleByAuthor() throws JSONException
 	assertTrue(resp.getStatusCode().is2xxSuccessful());
 	JSONAssert.assertEquals(outputstr,resp.getBody(),true);
 }
-
+ 
 //Testing the endpoint for getting the title with given title id
- 
   private static String getByTitleId="/api/titles/BU78321234567";
- String outputstr2=
-		 """
-		 		{
-    "titleId": "BU7832",
-    "title": "Straight Talk About Computers",
-    "type": "business",
-    "price": 19.99,
-    "advance": 5000.0,
-    "royalty": 10,
-    "ytdSales": 4095,
-    "notes": "Annotated analysis of what computers can do for you: a no-hype guide for the critical user.",
-    "pubDate": "1991-06-22",
-    "pub": {
-        "pubId": "1389",
-        "pubName": "Algodata Infosystems",
-        "city": "Berkeley",
-        "state": "CA",
-        "country": "USA"
-    }
-}
-""";
- @Test
- public void retrieveTitleByTitleId() throws JSONException{
-//	 assertTrue(Validation.extractString(getByTitleId));
-//	 ResponseEntity<String> resp=template.getForEntity(getByTitleId,String.class);
-//	 System.out.println(resp.getBody());
-//	 System.out.println(resp.getStatusCode());
-//	 System.out.println(resp.getHeaders());
-//	 assertTrue(resp.getBody().contains("business"));
-//	 JSONAssert.assertEquals(outputstr2,resp.getBody(),true);
+@Test
+public void retrieveTitleByTitleId() throws JSONException{
 	 assertFalse(Validation.extractString(getByTitleId));
-	
- }
- 
- //Testing the endpoint of getByPubdate
+}
+//Testing the endpoint of getByPubdate
    private static String getByPubDate="/api/titles/pubdate/1991-06-12";
    String outputstr3="""
    		[
@@ -132,15 +97,13 @@ public void retrieveTitleByAuthor() throws JSONException
     {"titleId": "TC7777"}
        ]
    		""";
-   
    @Test
    public void retrievalByPubdate() throws JSONException{
 	   ResponseEntity<String> resp=template.getForEntity(getByPubDate,String.class);
 	   JSONAssert.assertEquals(outputstr3,resp.getBody(),false);
    }
-
+ 
    //Testcase for deleting with wrong titleId
-   
    private static String deleteByTitleId="/api/titles/BU2";
    @Test
    public void deleteByTitleId() throws JSONException{
