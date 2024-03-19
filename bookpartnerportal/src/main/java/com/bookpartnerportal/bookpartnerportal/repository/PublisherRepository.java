@@ -14,6 +14,7 @@ public interface PublisherRepository extends JpaRepository<Publisher,String>{
 	List<Publisher> findByCity(String cityname);
 	List<Publisher> findByPubName(String publisherName);
 	Publisher findByPubId(String pubid);
+//	Publisher findBypubId(String pubid);
 	
 
 	

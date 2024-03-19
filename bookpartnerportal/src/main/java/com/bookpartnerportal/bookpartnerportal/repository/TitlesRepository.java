@@ -35,6 +35,9 @@ public interface TitlesRepository extends JpaRepository<Titles,String> {
 	@Modifying
 	@Query("DELETE FROM Titles t WHERE t.titleId= :titleId")
 	void deleteByTitleId(String titleId);
-	
+	@Modifying
+	@Query("DELETE FROM Titles t WHERE t.pub= :pub")
+	void deleteByPub(Publisher pub);
+//	
      
 }

@@ -1,6 +1,5 @@
 package com.bookpartnerportal.bookpartnerportal.publishertest;
 
-
 //testing with publisherIdSize
 public class PublisherValidation {
 	public static boolean extractString(String endpoint) {
@@ -11,3 +10,4 @@ public class PublisherValidation {
         return true;
     }
 }
+

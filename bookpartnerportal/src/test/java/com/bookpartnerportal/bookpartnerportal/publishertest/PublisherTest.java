@@ -41,20 +41,6 @@ public class PublisherTest {
 				"""
     [
     {
-        "pubId": "0736",
-        "pubName": "New Moon Books",
-        "city": "Boston",
-        "state": "MA",
-        "country": "USA"
-    },
-    {
-        "pubId": "0877",
-        "pubName": "Binnet & Hardley",
-        "city": "Washington",
-        "state": "DC",
-        "country": "USA"
-    },
-    {
         "pubId": "1389",
         "pubName": "Algodata Infosystems",
         "city": "Berkeley",
@@ -85,28 +71,28 @@ public class PublisherTest {
 ]
 
 						""";
-	private String allpublishersname = "/api/publishers/pubname/New Moon Books"; 
+	private String allpublishersname = "/api/publishers/pubname/GGG&G"; 
 	String expectedbyname = 
 				"""
 				[
     {
-        "pubId": "0736",
-        "pubName": "New Moon Books",
-        "city": "Boston",
-        "state": "MA",
-        "country": "USA"
+        "pubId": "9901",
+        "pubName": "GGG&G",
+        "city": "M nchen",
+        "state": null,
+        "country": "Germany"
     }
 ]
 						""";
-	private String allpublishersstate = "/api/publishers/state/ma"; 
+	private String allpublishersstate = "/api/publishers/state/ny"; 
 	String expectedbystate = 
 				"""
 				[
     {
-        "pubId": "0736",
-        "pubName": "New Moon Books",
-        "city": "Boston",
-        "state": "MA",
+        "pubId": "9952",
+        "pubName": "Scootney Books",
+        "city": "New York",
+        "state": "NY",
         "country": "USA"
     }
 ]
@@ -123,7 +109,7 @@ public class PublisherTest {
 			System.out.println(response.getHeaders());
 			assertEquals("application/json",response.getHeaders().get("Content-Type").get(0));
 			assertTrue(response.getStatusCode().is2xxSuccessful());
-			JSONAssert.assertEquals(expectedcity, response.getBody(), false);
+			JSONAssert.assertEquals(expectedcity, response.getBody(), true);
 
  
     }
@@ -137,7 +123,7 @@ public class PublisherTest {
 			assertEquals("application/json",
 					response.getHeaders().get("Content-Type").get(0));
 			assertTrue(response.getStatusCode().is2xxSuccessful());
-			JSONAssert.assertEquals(expectedcountry, response.getBody(), false);
+			JSONAssert.assertEquals(expectedcountry, response.getBody(), true);
 
  
     }
@@ -150,7 +136,7 @@ public class PublisherTest {
 			assertEquals("application/json",
 					response.getHeaders().get("Content-Type").get(0));
 			assertTrue(response.getStatusCode().is2xxSuccessful());
-			JSONAssert.assertEquals(expectedbystate, response.getBody(), false);
+			JSONAssert.assertEquals(expectedbystate, response.getBody(), true);
 
  
     }
@@ -163,7 +149,7 @@ public class PublisherTest {
 			assertEquals("application/json",
 					response.getHeaders().get("Content-Type").get(0));
 			assertTrue(response.getStatusCode().is2xxSuccessful());
-			JSONAssert.assertEquals(expectedbyname, response.getBody(), false);
+			JSONAssert.assertEquals(expectedbyname, response.getBody(), true);
 
  
     }
@@ -178,13 +164,16 @@ public class PublisherTest {
 			   assertTrue(resp.getStatusCode().is4xxClientError());
 
 		   }
-			private static String publisherId="/api/publishers/99127";
-
+		   private static String PubById="/api/publishers/99999";
 		   @Test
 			public void testgetAllPublishersbyId() throws JSONException, org.json.JSONException {
-				assertFalse(PublisherValidation.extractString(publisherId));
+				assertFalse(PublisherValidation.extractString(PubById));
+				
 
 	 
-	    }	
+	    }
+
+}
+	
 		
-    }
+    

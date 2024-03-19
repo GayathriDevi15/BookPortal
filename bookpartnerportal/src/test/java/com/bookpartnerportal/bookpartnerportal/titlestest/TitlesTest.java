@@ -105,7 +105,6 @@ String outputstr2=
 public void retrieveTitleByTitleId() throws JSONException{
 	 assertFalse(Validation.extractString(getByTitleId));
 }
-
 //Testing the endpoint of getByPubdate
    private static String getByPubDate="/api/titles/pubdate/1991-06-12";
    String outputstr3="""
