@@ -100,7 +100,7 @@ public class StoreTest {
 	}
 
 	// Testing the endpoint of getByPubdate
-	private static String getByZip = "/api/stores/zip/98014";
+	private static String getByZip = "/api/stores/zip/98056";
 	String outputstr5 = """
 				   	[
 			    {

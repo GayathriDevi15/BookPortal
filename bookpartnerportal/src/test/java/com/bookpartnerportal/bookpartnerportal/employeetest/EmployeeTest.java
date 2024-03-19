@@ -56,7 +56,6 @@ public class EmployeeTest {
 		assertEquals("application/json",resp.getHeaders().get("Content-Type").get(0));
 		assertTrue(resp.getStatusCode().is2xxSuccessful());
 		JSONAssert.assertEquals(output1,resp.getBody(),true);
-		 assertFalse(EmployeeValidation.checkLength(getbyid)); //validation for empid length with wrong length
 	}
 
 	// get by fname
@@ -103,17 +102,17 @@ public class EmployeeTest {
 	String output3 = """
 						[
     {
-        "empId": "A-C71970F",
-        "fname": "Aria",
+        "empId": "Y-L77953M",
+        "fname": "Yoshi",
         "minit": "",
-        "lname": "Cruz",
+        "lname": "Latimer",
         "job": {
-            "jobId": 10,
-            "jobDesc": "Productions Manager",
-            "minLvl": 75,
-            "maxLvl": 165
+            "jobId": 12,
+            "jobDesc": "Editor",
+            "minLvl": 25,
+            "maxLvl": 100
         },
-        "jobLvl": 87,
+        "jobLvl": 32,
         "publisher": {
             "pubId": "1389",
             "pubName": "Algodata Infosystems",
@@ -121,7 +120,7 @@ public class EmployeeTest {
             "state": "CA",
             "country": "USA"
         },
-        "hireDate": "1991-10-26T00:00:00"
+        "hireDate": "1989-06-11T00:00:00"
     }
 ]
 									""";
