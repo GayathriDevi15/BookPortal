@@ -47,7 +47,7 @@ public class SalesTest {
             "royalty": 10,
             "ytdSales": 4095,
             "notes": "Muckraking reporting on the worlds largest computer hardware and software manufacturers.",
-            "pubDate": "1994-06-12T00:00:00",
+            "pubDate": "1994-06-12",
             "pub": {
                 "pubId": "1389",
                 "pubName": "Algodata Infosystems",

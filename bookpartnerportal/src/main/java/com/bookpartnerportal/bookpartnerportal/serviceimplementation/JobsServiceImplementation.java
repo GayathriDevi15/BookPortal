@@ -53,29 +53,19 @@ public class JobsServiceImplementation implements JobsService {
 	public List<Jobs> getJobsByMinLvl(int minLvl) {
 		return jobrepo.findByMinLvl(minLvl);
 	}
-//    @Override
-//    public void deleteByJobId(int jobId) {
-//        jobsRepository.deleteJobByJobId(jobId);
-//    }
 
-	// doubt
+	// delete
 	@Override
 	public void deleteJobByJobId(int jobId) {
 		String jobIdString = String.valueOf(jobId);
 
 		List<Employee> jobToDelete = employeeRepository.findByJobId(jobIdString);
 		employeeRepository.deleteAll(jobToDelete);
-		employeeRepository.deleteById(jobIdString);
+//		employeeRepository.deleteById(jobIdString);
 		jobrepo.deleteById(jobId);
 	}
 
 	@Override
-	public Jobs getJobsByJobId(int jobId) {
-		return jobrepo.findByJobId(jobId);
-	}
-
-	@Override
-
 	public Jobs updateJob(int jobId, Jobs jobs) {
 		if (jobrepo.existsById(jobId) && jobs.getMinLvl() >= 10 && jobs.getMaxLvl() != 0 && jobs.getMaxLvl() <= 250) {
 			if (jobs.getJobDesc() == null) {

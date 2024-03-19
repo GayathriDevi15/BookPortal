@@ -1,6 +1,5 @@
 package com.bookpartnerportal.bookpartnerportal.controller;
 
-
 import java.time.LocalDate;
 
 import java.util.List;
@@ -31,127 +30,134 @@ import com.bookpartnerportal.bookpartnerportal.repository.PublisherRepository;
 import com.bookpartnerportal.bookpartnerportal.serviceimplementation.PublisherServiceImplementation;
 import com.bookpartnerportal.bookpartnerportal.success.SuccessResponse;
 
-
 @RestController
 public class PublisherController {
 	@Autowired
 	private PublisherServiceImplementation publisherImp;
 	private PublisherRepository publisherrepository;
 
+	public PublisherController(PublisherServiceImplementation publisherImp, PublisherRepository publisherrepository) {
+		super();
+		this.publisherImp = publisherImp;
+		this.publisherrepository = publisherrepository;
+	}
 
-
+	// Get ALL Publishers
+	// ****** EndPoint 1*******
 	@GetMapping("/api/publishers")
-	public ResponseEntity<List<Publisher>> getPublishers(){
-		List<Publisher> publishers=publisherImp.getAllPublishers();
-		if(publishers.isEmpty()) {
+	public ResponseEntity<List<Publisher>> getPublishers() {
+		List<Publisher> publishers = publisherImp.getAllPublishers();
+		if (publishers.isEmpty()) {
 			throw new PublishersNotFoundException("Publishers not found");
 		}
-		return new ResponseEntity<>(publishers,HttpStatus.OK);
+		return new ResponseEntity<>(publishers, HttpStatus.OK);
 	}
 
-	
-	public PublisherController(PublisherServiceImplementation publisherImp, PublisherRepository publisherrepository) {
-	super();
-	this.publisherImp = publisherImp;
-	this.publisherrepository = publisherrepository;
-}
-
-
+	// Get ALL Employees By PublisherId
+	// ****** EndPoint 2*******
 	@GetMapping("/api/employee/pubid/{pubid}")
 	public ResponseEntity<List<Employee>> getEmployeebyid(@PathVariable("pubid") String pubid) {
-		List<Employee> e=publisherImp.getbypubid(pubid);
-		if(e.isEmpty()) {
+		List<Employee> e = publisherImp.getbypubid(pubid);
+		if (e.isEmpty()) {
 			throw new EmployeesbyPublisherIdNotFoundException("Employees with given publisherId not found");
 		}
-		return new ResponseEntity<>(e,HttpStatus.OK);
+		return new ResponseEntity<>(e, HttpStatus.OK);
 	}
-	
-	@GetMapping("/api/employee/pubid/{pubid}/fname/{fname}")
-	public ResponseEntity<List<Employee>> getEmployeebyFname(@PathVariable("pubid") String pubid,@PathVariable("fname") String fname) {
-		List<Employee> e=publisherImp.getbyempfnameubid(pubid, fname);
 
-		if(e.isEmpty()) {
+	// Get ALL Employees with their FirstName and PublisherId
+	// ****** EndPoint 3*******
+	@GetMapping("/api/employee/pubid/{pubid}/fname/{fname}")
+	public ResponseEntity<List<Employee>> getEmployeebyFname(@PathVariable("pubid") String pubid,
+			@PathVariable("fname") String fname) {
+		List<Employee> e = publisherImp.getbyempfnameubid(pubid, fname);
+
+		if (e.isEmpty()) {
 			throw new EmployeeFirstnamebyPublisherIdNotFoundException("Employees with given firstname not found");
 		}
-		return new ResponseEntity<>(e,HttpStatus.FOUND);
+		return new ResponseEntity<>(e, HttpStatus.FOUND);
 	}
 
-	
+	// Get ALL Publishers with specific country name
+	// ****** EndPoint 4*******
 	@GetMapping("/api/publishers/country/{countryname}")
-    public ResponseEntity<List<Publisher>> getbycountry(@PathVariable("countryname") String countryname){
+	public ResponseEntity<List<Publisher>> getbycountry(@PathVariable("countryname") String countryname) {
 		List<Publisher> publisher = publisherImp.getbyCountry(countryname);
-		if(publisher.isEmpty()) {
+		if (publisher.isEmpty()) {
 			throw new PublisherWithCountryNotFoundException("Publisher with given country not found");
 		}
-		return new ResponseEntity<>(publisher,HttpStatus.OK);
-    }
-
-	
-	@GetMapping("/api/publishers/state/{statename}")
-    public ResponseEntity<List<Publisher>> getbystate(@PathVariable("statename") String statename){
-		List<Publisher> publisher = publisherImp.getbyState(statename);
-		if(publisher.isEmpty()) {
-			throw new PublisherWithStateNotFoundException("Publisher with given state not found");
-		}
-		return new ResponseEntity<>(publisher,HttpStatus.OK);
-    }
-	
-	@GetMapping("/api/publishers/city/{name}")
-    public ResponseEntity<List<Publisher>> getbycity(@PathVariable("name") String name){
-		List<Publisher> publisher = publisherImp.getbyCity(name);
-		if(publisher.isEmpty()) {
-			throw new PublisherWithCityNotFoundException("Publisher with given city not found");
-		}
-        return new ResponseEntity<>(publisher,HttpStatus.OK);
-    }
-	
-	
-	@GetMapping("/api/publishers/pubname/{publishername}")
-    public ResponseEntity<List<Publisher>> getbypubname(@PathVariable("publishername") String publishername){
-		List<Publisher> publisher = publisherImp.getbyName(publishername);
-		if(publisher.isEmpty()) {
-			throw new PublisherWithNameNotFoundException("Publisher with given name not found");
-		}
-        return new ResponseEntity<>(publisher,HttpStatus.OK);
-    }
-
-
-	
-   @DeleteMapping("/api/publishers/{pub_id}")
-   public ResponseEntity<SuccessResponse> deletePublisher(@PathVariable("pub_id") String id) {
-	   Publisher pub=publisherrepository.findByPubId(id);
-	 if(pub==null) {
-		   throw new PublisherWithIdNotFoundException("Publisher with this publisherId not found");
-	   }
-	 publisherImp.deletePublisherbyId(id);
-	 SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"Publisher deleted successfully");
-	  return new ResponseEntity<>(successResponse,HttpStatus.OK);
+		return new ResponseEntity<>(publisher, HttpStatus.OK);
 	}
 
+	// Get ALL Publishers with specific state name
+	// ****** EndPoint 5*******
+	@GetMapping("/api/publishers/state/{statename}")
+	public ResponseEntity<List<Publisher>> getbystate(@PathVariable("statename") String statename) {
+		List<Publisher> publisher = publisherImp.getbyState(statename);
+		if (publisher.isEmpty()) {
+			throw new PublisherWithStateNotFoundException("Publisher with given state not found");
+		}
+		return new ResponseEntity<>(publisher, HttpStatus.OK);
+	}
 
-   
-   @PutMapping("/api/publishers/{pub_id}")
-   public ResponseEntity<SuccessResponse> updatepublisher(@PathVariable("pub_id") String pub_id, @RequestBody Publisher publisher){
-	   Publisher pub=publisherImp.updatepublisher(pub_id, publisher);
-	   if(pub==null) {
-		   throw new ValidationFailedException("Validation failed");
-	   }
-	   SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"Publisher updated successfully");
-	   return new ResponseEntity<>(successResponse,HttpStatus.OK);
-   }
+	// Get ALL Publishers with specific city name
+	// ****** EndPoint 6*******
+	@GetMapping("/api/publishers/city/{name}")
+	public ResponseEntity<List<Publisher>> getbycity(@PathVariable("name") String name) {
+		List<Publisher> publisher = publisherImp.getbyCity(name);
+		if (publisher.isEmpty()) {
+			throw new PublisherWithCityNotFoundException("Publisher with given city not found");
+		}
+		return new ResponseEntity<>(publisher, HttpStatus.OK);
+	}
 
+	// Get ALL Publishers with Publisher's Name
+	// ****** EndPoint 7*******
+	@GetMapping("/api/publishers/pubname/{publishername}")
+	public ResponseEntity<List<Publisher>> getbypubname(@PathVariable("publishername") String publishername) {
+		List<Publisher> publisher = publisherImp.getbyName(publishername);
+		if (publisher.isEmpty()) {
+			throw new PublisherWithNameNotFoundException("Publisher with given name not found");
+		}
+		return new ResponseEntity<>(publisher, HttpStatus.OK);
+	}
 
-   
-   @PostMapping("/api/publishers")
-   public ResponseEntity<SuccessResponse> addnewpublisher(@RequestBody Publisher publisher){
-	   Publisher newpub=publisherImp.addpublisher(publisher);
-	   if(newpub==null) {
-		   throw new ValidationFailedException("Validation failed");
-	   }
+	// Delete Publisher By Id
+	// ****** EndPoint 8*******
+	@DeleteMapping("/api/publishers/{pub_id}")
+	public ResponseEntity<SuccessResponse> deletePublisher(@PathVariable("pub_id") String id) {
+		Publisher pub = publisherrepository.findByPubId(id);
+		if (pub == null) {
+			throw new PublisherWithIdNotFoundException("Publisher with this publisherId not found");
+		}
+		publisherImp.deletePublisherbyId(id);
+		SuccessResponse successResponse = new SuccessResponse(LocalDate.now(), "Publisher deleted successfully");
+		return new ResponseEntity<>(successResponse, HttpStatus.OK);
+	}
 
-	   SuccessResponse successResponse=new SuccessResponse(LocalDate.now(),"New Publisher added successfully");
-	   return new ResponseEntity<>(successResponse,HttpStatus.CREATED);
-   }
-     
+	// Update Publisher By Id
+	// ****** EndPoint 9*******
+	@PutMapping("/api/publishers/{pub_id}")
+	public ResponseEntity<SuccessResponse> updatepublisher(@PathVariable("pub_id") String pub_id,
+			@RequestBody Publisher publisher) {
+		Publisher pub = publisherImp.updatepublisher(pub_id, publisher);
+		if (pub == null) {
+			throw new ValidationFailedException("Validation failed");
+		}
+		SuccessResponse successResponse = new SuccessResponse(LocalDate.now(), "Publisher updated successfully");
+		return new ResponseEntity<>(successResponse, HttpStatus.OK);
+	}
+
+	// Add Publishers
+	// ****** EndPoint 10*******
+	@PostMapping("/api/publishers")
+	public ResponseEntity<SuccessResponse> addnewpublisher(@RequestBody Publisher publisher) {
+		Publisher newpub = publisherImp.addpublisher(publisher);
+		if (newpub == null) {
+			throw new ValidationFailedException("Validation failed");
+		}
+
+		SuccessResponse successResponse = new SuccessResponse(LocalDate.now(), "New Publisher added successfully");
+		return new ResponseEntity<>(successResponse, HttpStatus.CREATED);
+	}
 
 }

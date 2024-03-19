@@ -47,8 +47,9 @@ public class TitlesTest {
    private static String getbyauthor="/api/titles/authorname/Johnson";
    String outputstr=
      """
-       	[{
-       	"titleId": "PS3333",
+       	[
+    {
+        "titleId": "PS3333",
         "title": "Prolonged Data Deprivation: Four Case Studies",
         "type": "psychology",
         "price": 19.99,
@@ -64,7 +65,8 @@ public class TitlesTest {
             "state": "MA",
             "country": "USA"
         }
-        }]
+    }
+]
     """;
 @Test
 public void retrieveTitleByAuthor() throws JSONException 
@@ -80,27 +82,6 @@ public void retrieveTitleByAuthor() throws JSONException
  
 //Testing the endpoint for getting the title with given title id
   private static String getByTitleId="/api/titles/BU78321234567";
-String outputstr2=
-		 """
-		 		{
-    "titleId": "BU7832",
-    "title": "Straight Talk About Computers",
-    "type": "business",
-    "price": 19.99,
-    "advance": 5000.0,
-    "royalty": 10,
-    "ytdSales": 4095,
-    "notes": "Annotated analysis of what computers can do for you: a no-hype guide for the critical user.",
-    "pubDate": "1991-06-22",
-    "pub": {
-        "pubId": "1389",
-        "pubName": "Algodata Infosystems",
-        "city": "Berkeley",
-        "state": "CA",
-        "country": "USA"
-    }
-}
-""";
 @Test
 public void retrieveTitleByTitleId() throws JSONException{
 	 assertFalse(Validation.extractString(getByTitleId));
